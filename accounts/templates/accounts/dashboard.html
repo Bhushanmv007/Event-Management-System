@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    {% load static %}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'accounts/dashboard.css' %}" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EventEcho</title> <!-- Updated title -->
+        {% load static %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'accounts/dashboard.css' %}" rel="stylesheet">
+        <style>       
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dashboard</a>
+        <a class="navbar-brand" href="#">EventEcho</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -19,6 +21,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <!-- New About Us button -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#about-us">About Us</a>
                 </li>
             </ul>
         </div>
@@ -95,69 +101,85 @@
                     <div class="review-wrapper">
                         <div class="review-cards">
                             <!-- Review 1 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review1.jpg' %}" alt="Reviewer 1" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">John Doe</div>
-                                    <p class="review-text">This is an amazing service! It has made managing events so much easier. Highly recommend to everyone.</p>
+                            <a href="https://en.wikipedia.org/wiki/Justin_Bieber" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review1.jpg' %}" alt="Reviewer 1" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Justin Bieber</div>
+                                        <p class="review-text">Singer/Musician</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 2 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review2.jpg' %}" alt="Reviewer 2" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">Jane Smith</div>
-                                    <p class="review-text">A fantastic platform with great features. The customer support is excellent, and the user interface is very intuitive.</p>
+                            <a href="https://en.wikipedia.org/wiki/Gangavathi_Pranesh" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review9.jpg' %}" alt="Reviewer 2" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Gangavathi Pranesh</div>
+                                        <p class="review-text">Comedian</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 3 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review3.jpg' %}" alt="Reviewer 3" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">Alex Johnson</div>
-                                    <p class="review-text">I've been using this service for a few months now, and it has exceeded my expectations. The integration with other tools is seamless.</p>
+                            <a href="https://en.wikipedia.org/wiki/Arijit_Singh" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review3.jpg' %}" alt="Reviewer 3" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Arijith Singh</div>
+                                        <p class="review-text">Singer/Performer</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 4 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review4.jpg' %}" alt="Reviewer 4" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">Emily Davis</div>
-                                    <p class="review-text">Great experience overall! The features are top-notch, and the platform is very reliable. I would definitely use it again.</p>
+                            <a href="https://en.wikipedia.org/wiki/Sonu_Nigam" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review4.jpg' %}" alt="Reviewer 4" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Sonu Nigam</div>
+                                        <p class="review-text">Singer/Performer</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 5 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review5.jpg' %}" alt="Reviewer 5" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">Michael Brown</div>
-                                    <p class="review-text">Excellent service with lots of features. The support team is very responsive and helpful. Highly recommended for any event manager.</p>
+                            <a href="https://en.wikipedia.org/wiki/Rajesh_Krishnan" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review5.jpg' %}" alt="Reviewer 5" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Rajesh Krishnan</div>
+                                        <p class="review-text">Singer</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 6 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review6.jpg' %}" alt="Reviewer 6" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">Sophia Wilson</div>
-                                    <p class="review-text">A must-have tool for event management. The platform is user-friendly and the customer support is fantastic. Will continue to use it!</p>
+                            <a href="https://en.wikipedia.org/wiki/Dua_Lipa" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review6.jpg' %}" alt="Reviewer 6" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Dua Lipa</div>
+                                        <p class="review-text">Singer</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 7 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review7.jpg' %}" alt="Reviewer 7" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">William Moore</div>
-                                    <p class="review-text">The best event management platform I've used. It has all the features you need and more. The interface is clean and easy to navigate.</p>
+                            <a href="https://en.wikipedia.org/wiki/Deadpool" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review7.jpg' %}" alt="Reviewer 7" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Deadpool</div>
+                                        <p class="review-text">Marvel Jesus</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Review 8 -->
-                            <div class="review-card">
-                                <img src="{% static 'accounts/review8.jpg' %}" alt="Reviewer 8" class="review-img">
-                                <div class="review-content">
-                                    <div class="review-name">Olivia Taylor</div>
-                                    <p class="review-text">Very impressed with this platform. It has everything I need for managing events, and the support team is always ready to help.</p>
+                            <a href="https://en.wikipedia.org/wiki/Birju_Maharaj" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review8.jpg' %}" alt="Reviewer 8" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Pandit Birju Maharaj</div>
+                                        <p class="review-text">Dancer, Composer</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -169,24 +191,29 @@
             <div class="col-md-12">
                 <div class="image-carousel">
                     <div class="carousel-container">
-                        <img src="{% static 'accounts/image1.jpg' %}" alt="Image 1">
+                        <img src="{% static 'accounts/image7.jpg' %}" alt="Image 1">
                         <img src="{% static 'accounts/image2.jpg' %}" alt="Image 2">
                         <img src="{% static 'accounts/image3.jpg' %}" alt="Image 3">
                         <img src="{% static 'accounts/image4.jpg' %}" alt="Image 4">
+                        <img src="{% static 'accounts/image5.jpg' %}" alt="Image 5">
+                        <img src="{% static 'accounts/image6.jpg' %}" alt="Image 6">
+                        <img src="{% static 'accounts/image8.jpg' %}" alt="Image 7">
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- About Us Section -->
-        <div class="row">
+        <div class="row" id="about-us">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         About Us
                     </div>
                     <div class="card-body">
-                        <p>We are a team dedicated to bringing you the best event management solutions. Our mission is to make event planning easy and efficient for everyone.</p>
+                        <p>We are a passionate team committed to delivering the most comprehensive and innovative event management solutions available. Our mission is to revolutionize the way events are planned and executed, making the entire process seamless, efficient, and enjoyable for our clients. With a focus on cutting-edge technology and unparalleled customer service, we strive to cater to the unique needs of each event, whether it's a small gathering, a corporate function, or a large-scale celebration.
+
+                            Our goal is to empower you with the tools and expertise needed to create unforgettable experiences, leaving you free to focus on what truly matters—enjoying the event and creating lasting memories. With our dedicated support and easy-to-use platform, we are here to ensure that every detail is handled with precision and care, making event planning not just easy, but truly exceptional. We are a team dedicated to bringing you the best event management solutions. Our mission is to make event planning easy and efficient for everyone.</p>
                         <p>Contact us for more information or support.</p>
                     </div>
                 </div>
@@ -196,16 +223,16 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
+        <p>&copy; JIT | All rights reserved | For more information contact 9035283996 | EventEcho@gmail.com</p>
         <div class="social-icons">
             <a href="https://www.instagram.com" class="social-icon" target="_blank">
-                <img src="{% static 'accounts/instagram.png' %}" alt="Instagram">
+                <img src="{% static 'accounts/LOG1.png' %}" alt="Instagram">
             </a>
             <a href="https://www.linkedin.com" class="social-icon" target="_blank">
-                <img src="{% static 'accounts/linkedin.png' %}" alt="LinkedIn">
+                <img src="{% static 'accounts/LOG2.png' %}" alt="LinkedIn">
             </a>
-            <a href="https://www.facebook.com" class="social-icon" target="_blank">
-                <img src="{% static 'accounts/facebook.png' %}" alt="Facebook">
+            <a href="https://mail.google.com" class="social-icon" target="_blank">
+                <img src="{% static 'accounts/LOG3.png' %}" alt="Facebook">
             </a>
         </div>
     </footer>
