@@ -24,6 +24,14 @@
         </div>
     </nav>
 
+    <!-- Video Section -->
+    <div class="video-container">
+        <video autoplay loop muted playsinline class="video-background">
+            <source src="{% static 'accounts/vid.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     <!-- Main Content -->
     <div class="container">
         <div class="row">
@@ -42,7 +50,7 @@
             <!-- Upcoming Events Card -->
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-success text-white">
+                    <div class="card-header bg-success">
                         <i class="fas fa-calendar-alt"></i> Upcoming Events
                     </div>
                     <div class="card-body">
@@ -66,7 +74,7 @@
             <!-- Notifications Card -->
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header bg-info text-white">
+                    <div class="card-header bg-info">
                         <i class="fas fa-bell"></i> Notifications
                     </div>
                     <div class="card-body">
