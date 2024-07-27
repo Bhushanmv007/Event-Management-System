@@ -93,25 +93,17 @@ def register_for_event(request, event_id):
     return render(request, 'events/register.html', {'form': form, 'event': event})
 
 def register_event_view(request, event_id):
-    # Retrieve the event based on the provided ID
     event = get_object_or_404(Event, id=event_id)
     
     if request.method == 'POST':
-        # Create a form instance with the POST data
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            # Create a new Registration object but don't save it to the database yet
             registration = form.save(commit=False)
-            # Set the user and event for the registration
             registration.event = event
             registration.user = request.user
-            # Save the registration to the database
             registration.save()
-            # Redirect to a success page or event detail page
             return redirect('event_detail', event_id=event.id)
     else:
-        # Create a blank form instance
         form = RegistrationForm()
     
-    # Render the registration template with the form and event context
     return render(request, 'events/register.html', {'form': form, 'event': event})

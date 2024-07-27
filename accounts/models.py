@@ -10,6 +10,7 @@ class Event(models.Model):
     date = models.DateTimeField(default=timezone.now)
     location = models.CharField(max_length=200)
     image = models.ImageField(upload_to='event_images/', blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
     def __str__(self):
         return self.name

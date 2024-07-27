@@ -16,26 +16,39 @@
         .card {
             margin-bottom: 20px;
         }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+        }
         .form-group {
             margin-bottom: 1rem;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+            color: #fff;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header">
                 <h5 class="mb-0">Register for {{ event.name }}</h5>
             </div>
             <div class="card-body">
                 <h4 class="card-title">{{ event.name }}</h4>
                 <p class="card-text">{{ event.description }}</p>
+                <p class="card-text"><strong>Price:</strong> ${{ event.price }}</p>
                 <form method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         {{ form.as_p }}
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-custom">Register</button>
                     <a href="{% url 'event_detail' event.id %}" class="btn btn-secondary ml-2">Back to Event Details</a>
                 </form>
             </div>
