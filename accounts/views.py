@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, LoginForm, EventForm
+from .forms import SignUpForm, LoginForm, EventForm, RegistrationForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -64,6 +64,45 @@ def add_event_view(request):
         form = EventForm()
     return render(request, 'accounts/add_event.html', {'form': form})
 
-def register_event_view(request):
-    # Your registration logic here
-    return render(request, 'events/register.html')
+def event_detail_view(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    return render(request, 'events/event_detail.html', {'event': event})
+
+@login_required
+def register_for_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            registration = form.save(commit=False)
+            registration.user = request.user
+            registration.event = event
+            registration.save()
+            return redirect('dashboard')
+    else:
+        form = RegistrationForm()
+    return render(request, 'events/register.html', {'form': form, 'event': event})
+
+def register_event_view(request, event_id):
+    # Retrieve the event based on the provided ID
+    event = get_object_or_404(Event, id=event_id)
+    
+    if request.method == 'POST':
+        # Create a form instance with the POST data
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            # Create a new Registration object but don't save it to the database yet
+            registration = form.save(commit=False)
+            # Set the user and event for the registration
+            registration.event = event
+            registration.user = request.user
+            # Save the registration to the database
+            registration.save()
+            # Redirect to a success page or event detail page
+            return redirect('event_detail', event_id=event.id)
+    else:
+        # Create a blank form instance
+        form = RegistrationForm()
+    
+    # Render the registration template with the form and event context
+    return render(request, 'events/register.html', {'form': form, 'event': event})
