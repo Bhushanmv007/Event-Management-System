@@ -74,14 +74,14 @@ body {
 
 .container {
     padding-top: 20px;
+    padding-bottom: 200px; /* Ensure enough space for the fixed footer */
 }
 
-/* Existing CSS rules... */
-
+/* Video Section */
 .video-container {
     position: relative;
     width: 100%;
-    height: 300px; /* Adjust height as needed */
+    height: 300px;
     overflow: hidden;
     margin-bottom: 20px;
 }
@@ -92,6 +92,151 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the video covers the area */
-    z-index: -1; /* Keeps the video in the background */
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* About Us Section */
+.about-us {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 40px; /* Added space before the footer */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Reviews Section */
+.reviews-container {
+    margin-bottom: 40px; /* Added space before the carousel */
+}
+
+.review-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0; /* Added padding to ensure spacing */
+    scroll-behavior: smooth;
+}
+
+.review-cards {
+    display: inline-flex;
+    will-change: transform;
+}
+
+.review-card {
+    display: inline-flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    width: 300px; /* Adjust width if needed */
+    height: 250px; /* Increased height for more vertical space */
+    flex-shrink: 0; /* Prevents shrinking */
+    overflow: hidden; /* Ensures content stays within the box */
+}
+
+.review-img {
+    border-radius: 50%;
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+.review-content {
+    text-align: center;
+    overflow: hidden; /* Ensures content does not overflow */
+    padding: 0 10px; /* Added padding for better spacing */
+}
+
+.review-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; /* Space between name and text */
+}
+
+.review-text {
+    font-size: 1rem;
+    color: #555;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    height: 100%; /* Fill the container */
+    overflow-y: auto; /* Scroll vertically if text overflows */
+    text-align: center;
+}
+
+.review-card:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.review-card:last-child {
+    margin-right: 0;
+}
+
+/* Image Carousel */
+.image-carousel {
+    overflow: hidden;
+    margin-bottom: 40px; /* Added space before the About Us section */
+    height: 100px; /* Adjusted for new height */
+}
+
+.carousel-container {
+    display: flex;
+    width: 400%;
+    height: 100px; /* Adjusted for new height */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-container img {
+    width: 25%;
+    height: auto;
+}
+
+@keyframes slide-images {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-25%); }
+    50% { transform: translateX(-50%); }
+    75% { transform: translateX(-75%); }
+    100% { transform: translateX(-100%); }
+}
+
+.carousel-container {
+    animation: slide-images 20s infinite;
+    height: 100px; /* Adjusted for new height */
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+    position: relative; /* Change to relative */
+    margin-top: 40px; /* Ensure it appears after content */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    clear: both; /* Clear floats if necessary */
+}
+
+.footer p {
+    margin: 0;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
 }
