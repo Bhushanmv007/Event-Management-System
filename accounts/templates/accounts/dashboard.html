@@ -68,13 +68,22 @@
                     </div>
                 </div>
             </div>
+            <!-- Notifications Card -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-info text-white">
                         <i class="fas fa-bell"></i> Notifications
                     </div>
                     <div class="card-body">
-                        <p>You have no new notifications.</p>
+                        {% if registered_events %}
+                            <ul class="list-group">
+                                {% for event in registered_events %}
+                                    <li class="list-group-item">{{ event.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>You have not registered for any events yet.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

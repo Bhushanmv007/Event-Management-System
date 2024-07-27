@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from .models import Event  # Import the Event model
+from .models import Event, Registration  # Import the Event model
 
 def signup_view(request):
     if request.method == 'POST':
@@ -52,7 +52,16 @@ def get_success_url(self):
 
 def dashboard_view(request):
     events = Event.objects.all()  # Get all events
-    return render(request, 'accounts/dashboard.html', {'events': events})
+    # Get events the user has registered for
+    registered_events = Registration.objects.filter(user=request.user).values_list('event', flat=True)
+    registered_events_details = Event.objects.filter(id__in=registered_events)
+
+    context = {
+        'events': events,
+        'registered_events': registered_events_details,
+    }
+
+    return render(request, 'accounts/dashboard.html', context)
 
 def add_event_view(request):
     if request.method == 'POST':
