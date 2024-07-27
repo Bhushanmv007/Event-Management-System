@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, EventForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
+from .models import Event  # Import the Event model
 
 def signup_view(request):
     if request.method == 'POST':
@@ -45,6 +46,24 @@ def dashboard_view(request):
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
     
-    def get_success_url(self):
+def get_success_url(self):
         next_url = self.request.POST.get('next')
         return next_url or reverse_lazy('dashboard')
+
+def dashboard_view(request):
+    events = Event.objects.all()  # Get all events
+    return render(request, 'accounts/dashboard.html', {'events': events})
+
+def add_event_view(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')  # Redirect to dashboard or another page after saving
+    else:
+        form = EventForm()
+    return render(request, 'accounts/add_event.html', {'form': form})
+
+def register_event_view(request):
+    # Your registration logic here
+    return render(request, 'events/register.html')

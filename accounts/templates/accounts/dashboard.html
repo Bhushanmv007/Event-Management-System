@@ -39,17 +39,31 @@
                     </div>
                 </div>
             </div>
-            <!-- Additional Cards or Widgets -->
+            <!-- Upcoming Events Card -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-success text-white">
                         <i class="fas fa-calendar-alt"></i> Upcoming Events
                     </div>
                     <div class="card-body">
-                        <p>No upcoming events scheduled.</p>
+                        {% if events %}
+                            <ul class="list-group">
+                                {% for event in events %}
+                                    <li class="list-group-item">
+                                        <strong>{{ event.name }}</strong><br>
+                                        {{ event.description }}<br>
+                                        Date: {{ event.date }}<br>
+                                        Location: {{ event.location }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No upcoming events scheduled.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            <!-- Notifications Card -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-info text-white">
