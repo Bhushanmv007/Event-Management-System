@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>EventEcho</title> <!-- Updated title -->
-        {% load static %}
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{% static 'accounts/dashboard.css' %}" rel="stylesheet">
-        <style>       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventEcho</title>
+    {% load static %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'accounts/dashboard.css' %}" rel="stylesheet">
+    <style>
+        .event-box {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -52,39 +55,8 @@
                         <p class="card-text">Welcome to your dashboard. Here you can manage your account and view relevant information.</p>
                     </div>
                 </div>
-            </div>
-            <!-- Events Card -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header bg-success">
-                        <i class="fas fa-calendar-alt"></i> Upcoming Events
-                    </div>
-                    <div class="card-body">
-                        {% if events %}
-                            <div class="list-group">
-                                {% for event in events %}
-                                <a href="{% url 'event_detail' event.id %}" class="list-group-item list-group-item-action">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">{{ event.name }}</h5>
-                                        <small>{{ event.date }}</small>
-                                    </div>
-                                    <p class="mb-1">{{ event.description }}</p>
-                                    <p class="mb-1">Price: ${{ event.price }}</p>
-                                    {% if event.image %}
-                                        <img src="{{ event.image.url }}" alt="{{ event.name }}" style="width: 100%; height: auto;">
-                                    {% endif %}
-                                </a>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <p>No upcoming events scheduled.</p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <!-- Notifications Card -->
-            <div class="col-md-4">
-                <div class="card">
+                <!-- Notifications Card -->
+                <div class="card mt-3">
                     <div class="card-header bg-info">
                         <i class="fas fa-bell"></i> Notifications
                     </div>
@@ -97,6 +69,40 @@
                             </ul>
                         {% else %}
                             <p>You have not registered for any events yet.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Events Card -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-success">
+                        <i class="fas fa-calendar-alt"></i> Upcoming Events
+                    </div>
+                    <div class="card-body">
+                        {% if events %}
+                            <div class="row">
+                                {% for event in events %}
+                                <div class="col-md-6 event-box">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>{{ event.name }}</h5>
+                                            <small>{{ event.date }}</small>
+                                        </div>
+                                        <div class="card-body">
+                                            <p>{{ event.description }}</p>
+                                            <p>Price: ${{ event.price }}</p>
+                                            {% if event.image %}
+                                                <img src="{{ event.image.url }}" alt="{{ event.name }}" style="width: 100%; height: auto;">
+                                            {% endif %}
+                                            <a href="{% url 'event_detail' event.id %}" class="btn btn-primary mt-2">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p>No upcoming events scheduled.</p>
                         {% endif %}
                     </div>
                 </div>
@@ -206,49 +212,38 @@
                         <img src="{% static 'accounts/image4.jpg' %}" alt="Image 4">
                         <img src="{% static 'accounts/image5.jpg' %}" alt="Image 5">
                         <img src="{% static 'accounts/image6.jpg' %}" alt="Image 6">
-                        <img src="{% static 'accounts/image8.jpg' %}" alt="Image 7">
+                        <img src="{% static 'accounts/image1.jpg' %}" alt="Image 7">
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- About Us Section -->
-        <div class="row" id="about-us">
+        <div class="row mt-5" id="about-us">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        About Us
+                    <div class="card-header bg-secondary text-white">
+                        <i class="fas fa-info-circle"></i> About Us
                     </div>
                     <div class="card-body">
-                        <p>We are a passionate team committed to delivering the most comprehensive and innovative event management solutions available. Our mission is to revolutionize the way events are planned and executed, making the entire process seamless, efficient, and enjoyable for our clients. With a focus on cutting-edge technology and unparalleled customer service, we strive to cater to the unique needs of each event, whether it's a small gathering, a corporate function, or a large-scale celebration.
-
-                            Our goal is to empower you with the tools and expertise needed to create unforgettable experiences, leaving you free to focus on what truly matters—enjoying the event and creating lasting memories. With our dedicated support and easy-to-use platform, we are here to ensure that every detail is handled with precision and care, making event planning not just easy, but truly exceptional. We are a team dedicated to bringing you the best event management solutions. Our mission is to make event planning easy and efficient for everyone.</p>
-                        <p>Contact us for more information or support.</p>
+                        <h5 class="card-title">About EventEcho</h5>
+                        <p class="card-text">
+                            EventEcho is your go-to platform for discovering and registering for the most exciting events around you. Whether you're looking for concerts, workshops, or community meetups, EventEcho has it all. Join our community and never miss out on an event again!
+                        </p>
+                        <h5 class="card-title">Contact Us</h5>
+                        <p class="card-text">
+                            Have questions or need support? Reach out to our team at support@eventecho.com or call us at +123456789.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; JIT | All rights reserved | For more information contact 9035283996 | EventEcho@gmail.com</p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com" class="social-icon" target="_blank">
-                <img src="{% static 'accounts/LOG1.png' %}" alt="Instagram">
-            </a>
-            <a href="https://www.linkedin.com" class="social-icon" target="_blank">
-                <img src="{% static 'accounts/LOG2.png' %}" alt="LinkedIn">
-            </a>
-            <a href="https://mail.google.com" class="social-icon" target="_blank">
-                <img src="{% static 'accounts/LOG3.png' %}" alt="Facebook">
-            </a>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS and other libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script src="{% static 'accounts/script.js' %}"></script>
 </body>
 </html>
