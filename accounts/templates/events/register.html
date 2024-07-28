@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register for {{ event.name }}</title>
+    {% load static %}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background: url('{% static 'accounts/bgg2.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
             padding-top: 20px;
         }
         .container {
@@ -15,10 +17,14 @@
         }
         .card {
             margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Adding a semi-transparent background for readability */
+            border-radius: 10px;
         }
         .card-header {
             background-color: #007bff;
             color: #fff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
         .form-group {
             margin-bottom: 1rem;
