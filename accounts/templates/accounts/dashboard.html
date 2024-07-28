@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    {% load static %}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'accounts/dashboard.css' %}" rel="stylesheet">
-    {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EventEcho</title> <!-- Updated title -->
+        {% load static %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'accounts/dashboard.css' %}" rel="stylesheet">
+        <style>       
+    </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dashboard</a>
+        <a class="navbar-brand" href="#">EventEcho</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -20,6 +21,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <!-- New About Us button -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#about-us">About Us</a>
                 </li>
             </ul>
         </div>
@@ -58,17 +63,17 @@
                         {% if events %}
                             <div class="list-group">
                                 {% for event in events %}
-                                    <a href="{% url 'event_detail' event.id %}" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">{{ event.name }}</h5>
-                                            <small>{{ event.date }}</small>
-                                        </div>
-                                        <p class="mb-1">{{ event.description }}</p>
-                                        <p class="mb-1">Price: ${{ event.price }}</p>
-                                        {% if event.image %}
-                                            <img src="{{ event.image.url }}" alt="{{ event.name }}" style="width: 100%; height: auto;">
-                                        {% endif %}
-                                    </a>
+                                <a href="{% url 'event_detail' event.id %}" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ event.name }}</h5>
+                                        <small>{{ event.date }}</small>
+                                    </div>
+                                    <p class="mb-1">{{ event.description }}</p>
+                                    <p class="mb-1">Price: ${{ event.price }}</p>
+                                    {% if event.image %}
+                                        <img src="{{ event.image.url }}" alt="{{ event.name }}" style="width: 100%; height: auto;">
+                                    {% endif %}
+                                </a>
                                 {% endfor %}
                             </div>
                         {% else %}
@@ -97,7 +102,275 @@
                 </div>
             </div>
         </div>
+
+        <!-- Reviews Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="reviews-container">
+                    <div class="review-wrapper">
+                        <div class="review-cards">
+                            <!-- Review 1 -->
+                            <a href="https://en.wikipedia.org/wiki/Justin_Bieber" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review1.jpg' %}" alt="Reviewer 1" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Justin Bieber</div>
+                                        <p class="review-text">Singer/Musician</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 2 -->
+                            <a href="https://en.wikipedia.org/wiki/Gangavathi_Pranesh" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review9.jpg' %}" alt="Reviewer 2" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Gangavathi Pranesh</div>
+                                        <p class="review-text">Comedian</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 3 -->
+                            <a href="https://en.wikipedia.org/wiki/Arijit_Singh" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review3.jpg' %}" alt="Reviewer 3" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Arijith Singh</div>
+                                        <p class="review-text">Singer/Performer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 4 -->
+                            <a href="https://en.wikipedia.org/wiki/Sonu_Nigam" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review4.jpg' %}" alt="Reviewer 4" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Sonu Nigam</div>
+                                        <p class="review-text">Singer/Performer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 5 -->
+                            <a href="https://en.wikipedia.org/wiki/Rajesh_Krishnan" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review5.jpg' %}" alt="Reviewer 5" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Rajesh Krishnan</div>
+                                        <p class="review-text">Singer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 6 -->
+                            <a href="https://en.wikipedia.org/wiki/Dua_Lipa" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review6.jpg' %}" alt="Reviewer 6" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Dua Lipa</div>
+                                        <p class="review-text">Singer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 7 -->
+                            <a href="https://en.wikipedia.org/wiki/Deadpool" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review7.jpg' %}" alt="Reviewer 7" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Deadpool</div>
+                                        <p class="review-text">Marvel Jesus</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 8 -->
+                            <a href="https://en.wikipedia.org/wiki/Birju_Maharaj" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review8.jpg' %}" alt="Reviewer 8" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Pandit Birju Maharaj</div>
+                                        <p class="review-text">Dancer, Composer</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Carousel -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="image-carousel">
+                    <div class="carousel-container">
+                        <img src="{% static 'accounts/image7.jpg' %}" alt="Image 1">
+                        <img src="{% static 'accounts/image2.jpg' %}" alt="Image 2">
+                        <img src="{% static 'accounts/image3.jpg' %}" alt="Image 3">
+                        <img src="{% static 'accounts/image4.jpg' %}" alt="Image 4">
+                        <img src="{% static 'accounts/image5.jpg' %}" alt="Image 5">
+                        <img src="{% static 'accounts/image6.jpg' %}" alt="Image 6">
+                        <img src="{% static 'accounts/image8.jpg' %}" alt="Image 7">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div class="row" id="about-us">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        About Us
+                    </div>
+                    <div class="card-body">
+                        <p>We are a passionate team committed to delivering the most comprehensive and innovative event management solutions available. Our mission is to revolutionize the way events are planned and executed, making the entire process seamless, efficient, and enjoyable for our clients. With a focus on cutting-edge technology and unparalleled customer service, we strive to cater to the unique needs of each event, whether it's a small gathering, a corporate function, or a large-scale celebration.
+
+                            Our goal is to empower you with the tools and expertise needed to create unforgettable experiences, leaving you free to focus on what truly matters—enjoying the event and creating lasting memories. With our dedicated support and easy-to-use platform, we are here to ensure that every detail is handled with precision and care, making event planning not just easy, but truly exceptional. We are a team dedicated to bringing you the best event management solutions. Our mission is to make event planning easy and efficient for everyone.</p>
+                        <p>Contact us for more information or support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reviews Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="reviews-container">
+                    <div class="review-wrapper">
+                        <div class="review-cards">
+                            <!-- Review 1 -->
+                            <a href="https://en.wikipedia.org/wiki/Justin_Bieber" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review1.jpg' %}" alt="Reviewer 1" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Justin Bieber</div>
+                                        <p class="review-text">Singer/Musician</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 2 -->
+                            <a href="https://en.wikipedia.org/wiki/Gangavathi_Pranesh" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review9.jpg' %}" alt="Reviewer 2" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Gangavathi Pranesh</div>
+                                        <p class="review-text">Comedian</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 3 -->
+                            <a href="https://en.wikipedia.org/wiki/Arijit_Singh" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review3.jpg' %}" alt="Reviewer 3" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Arijith Singh</div>
+                                        <p class="review-text">Singer/Performer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 4 -->
+                            <a href="https://en.wikipedia.org/wiki/Sonu_Nigam" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review4.jpg' %}" alt="Reviewer 4" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Sonu Nigam</div>
+                                        <p class="review-text">Singer/Performer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 5 -->
+                            <a href="https://en.wikipedia.org/wiki/Rajesh_Krishnan" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review5.jpg' %}" alt="Reviewer 5" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Rajesh Krishnan</div>
+                                        <p class="review-text">Singer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 6 -->
+                            <a href="https://en.wikipedia.org/wiki/Dua_Lipa" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review6.jpg' %}" alt="Reviewer 6" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Dua Lipa</div>
+                                        <p class="review-text">Singer</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 7 -->
+                            <a href="https://en.wikipedia.org/wiki/Deadpool" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review7.jpg' %}" alt="Reviewer 7" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Deadpool</div>
+                                        <p class="review-text">Marvel Jesus</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Review 8 -->
+                            <a href="https://en.wikipedia.org/wiki/Birju_Maharaj" target="_blank" class="review-link">
+                                <div class="review-card">
+                                    <img src="{% static 'accounts/review8.jpg' %}" alt="Reviewer 8" class="review-img">
+                                    <div class="review-content">
+                                        <div class="review-name">Pandit Birju Maharaj</div>
+                                        <p class="review-text">Dancer, Composer</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Carousel -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="image-carousel">
+                    <div class="carousel-container">
+                        <img src="{% static 'accounts/image7.jpg' %}" alt="Image 1">
+                        <img src="{% static 'accounts/image2.jpg' %}" alt="Image 2">
+                        <img src="{% static 'accounts/image3.jpg' %}" alt="Image 3">
+                        <img src="{% static 'accounts/image4.jpg' %}" alt="Image 4">
+                        <img src="{% static 'accounts/image5.jpg' %}" alt="Image 5">
+                        <img src="{% static 'accounts/image6.jpg' %}" alt="Image 6">
+                        <img src="{% static 'accounts/image8.jpg' %}" alt="Image 7">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div class="row" id="about-us">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        About Us
+                    </div>
+                    <div class="card-body">
+                        <p>We are a passionate team committed to delivering the most comprehensive and innovative event management solutions available. Our mission is to revolutionize the way events are planned and executed, making the entire process seamless, efficient, and enjoyable for our clients. With a focus on cutting-edge technology and unparalleled customer service, we strive to cater to the unique needs of each event, whether it's a small gathering, a corporate function, or a large-scale celebration.
+
+                            Our goal is to empower you with the tools and expertise needed to create unforgettable experiences, leaving you free to focus on what truly matters—enjoying the event and creating lasting memories. With our dedicated support and easy-to-use platform, we are here to ensure that every detail is handled with precision and care, making event planning not just easy, but truly exceptional. We are a team dedicated to bringing you the best event management solutions. Our mission is to make event planning easy and efficient for everyone.</p>
+                        <p>Contact us for more information or support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; JIT | All rights reserved | For more information contact 9035283996 | EventEcho@gmail.com</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com" class="social-icon" target="_blank">
+                <img src="{% static 'accounts/LOG1.png' %}" alt="Instagram">
+            </a>
+            <a href="https://www.linkedin.com" class="social-icon" target="_blank">
+                <img src="{% static 'accounts/LOG2.png' %}" alt="LinkedIn">
+            </a>
+            <a href="https://mail.google.com" class="social-icon" target="_blank">
+                <img src="{% static 'accounts/LOG3.png' %}" alt="Facebook">
+            </a>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
