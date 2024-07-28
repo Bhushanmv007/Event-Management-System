@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, LoginForm, EventForm
+from .forms import SignUpForm, LoginForm, EventForm, RegistrationForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from .models import Event  # Import the Event model
+from .models import Event, Registration  # Import the Event model
 
 def signup_view(request):
     if request.method == 'POST':
@@ -52,7 +52,16 @@ def get_success_url(self):
 
 def dashboard_view(request):
     events = Event.objects.all()  # Get all events
-    return render(request, 'accounts/dashboard.html', {'events': events})
+    # Get events the user has registered for
+    registered_events = Registration.objects.filter(user=request.user).values_list('event', flat=True)
+    registered_events_details = Event.objects.filter(id__in=registered_events)
+
+    context = {
+        'events': events,
+        'registered_events': registered_events_details,
+    }
+
+    return render(request, 'accounts/dashboard.html', context)
 
 def add_event_view(request):
     if request.method == 'POST':
@@ -64,6 +73,37 @@ def add_event_view(request):
         form = EventForm()
     return render(request, 'accounts/add_event.html', {'form': form})
 
-def register_event_view(request):
-    # Your registration logic here
-    return render(request, 'events/register.html')
+def event_detail_view(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    return render(request, 'events/event_detail.html', {'event': event})
+
+@login_required
+def register_for_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            registration = form.save(commit=False)
+            registration.user = request.user
+            registration.event = event
+            registration.save()
+            return redirect('dashboard')
+    else:
+        form = RegistrationForm()
+    return render(request, 'events/register.html', {'form': form, 'event': event})
+
+def register_event_view(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            registration = form.save(commit=False)
+            registration.event = event
+            registration.user = request.user
+            registration.save()
+            return redirect('event_detail', event_id=event.id)
+    else:
+        form = RegistrationForm()
+    
+    return render(request, 'events/register.html', {'form': form, 'event': event})
