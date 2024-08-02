@@ -1,17 +1,16 @@
 from django.urls import path
-from .views import signup_view, login_view, logout_view,dashboard_view
+from .views import u,d,r
 from django.urls import path
-from .views import  register_event_view, add_event_view,event_detail_view, register_for_event
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', signup_view, name='signup'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
-    path('dashboard/', dashboard_view, name='dashboard'),
-    path('events/register/', register_event_view, name='register_event'),
-    path('add_event/', add_event_view, name='add_event'),
-    path('event/<int:event_id>/', event_detail_view, name='event_detail'),
-    path('event/<int:event_id>/register/', register_for_event, name='register_for_event'),
+    path('', u.signup_view, name='signup'),
+    path('login/', u.login_view, name='login'),
+    path('logout/', u.logout_view, name='logout'),
+    path('dashboard/', d.dashboard_view, name='dashboard'),
+    path('events/register/', r.register_event_view, name='register_event'),
+    path('add_event/', d.add_event_view, name='add_event'),
+    path('event/<int:event_id>/', d.event_detail_view, name='event_detail'),
+    path('event/<int:event_id>/register/', r.register_for_event, name='register_for_event'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
